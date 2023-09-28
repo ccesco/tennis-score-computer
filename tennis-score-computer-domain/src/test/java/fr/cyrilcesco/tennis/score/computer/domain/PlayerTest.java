@@ -65,4 +65,20 @@ class PlayerTest {
         ScoreNotAllowedException scoreNotAllowedException = assertThrows(ScoreNotAllowedException.class, player::winPoint);
         assertEquals("Score not allowed", scoreNotAllowedException.getMessage());
     }
+
+    @Test
+    void should_return_advantage_when_player_win_deuce() {
+        Player player = new Player("Cyril");
+        player.winPointInDeuce();
+
+        assertEquals(Score.ADVANTAGE, player.getScore());
+    }
+
+    @Test
+    void should_return_FORTY_when_player_loose_advantage() {
+        Player player = new Player("Cyril");
+        player.loosePointInAdvantage();
+
+        assertEquals(Score.FORTY, player.getScore());
+    }
 }

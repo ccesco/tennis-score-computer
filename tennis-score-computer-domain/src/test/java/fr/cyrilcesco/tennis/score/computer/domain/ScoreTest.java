@@ -1,5 +1,6 @@
 package fr.cyrilcesco.tennis.score.computer.domain;
 
+import fr.cyrilcesco.tennis.score.computer.domain.exceptions.ScoreNotAllowedException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,5 +41,11 @@ class ScoreTest {
     void should_return_FORTY_when_player_loose_in_avantage() {
         Score nextScore = Score.getPreviousScoreAdvantage();
         assertEquals(Score.FORTY, nextScore);
+    }
+
+    @Test
+    void should_throw_error_if_no_next_score() {
+        ScoreNotAllowedException scoreNotAllowedException = assertThrows(ScoreNotAllowedException.class, () -> Score.getNextScore(Score.GAME));
+        assertEquals("Score not allowed", scoreNotAllowedException.getMessage());
     }
 }

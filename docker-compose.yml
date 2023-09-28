@@ -1,0 +1,7 @@
+version: '3.9'
+
+services:
+  tennis-score-computer:
+    container_name: tennis-score-computer
+    build: ./tennis-score-computer-application
+    image: tennis-score-computer-application:latest

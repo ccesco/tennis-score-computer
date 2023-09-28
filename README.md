@@ -23,3 +23,29 @@ For example the following input “ABABAA” should print :
 “Player A : 30 / Player B : 30”
 “Player A : 40 / Player B : 30”
 “Player A wins the game
+
+# Run
+
+Compilation :
+```
+mvn clean install
+```
+
+Lancement :
+```
+docker-compose up
+```
+
+Pour changer le paramètre de lancement, modifier le Dockerfile de tennis-score-computer-application et lancer la commande :
+```
+docker-compose up --build
+```
+
+# Choix architecture
+
+Certain choix d'architecture peuvent être disproportionnés pour ce Kata, mais je l'ai réalisé comme si je devais mettre l'application en prod, et dans une logique d'évolution rapide et de maintenabilité facile.
+
+Séparation du domain et de la partie applicative, dans une logique d'architecture hexagonale. Dans le futur, si on a un besoin de réutilisation du domain, c'est plus simple et pas de framework.
+
+Dans la partie applicative, j'ai séparé la logique d'affichage (display) et de la gestion de la String pour limiter les impacts si on décide de changer le format de sortie (json par exemple).
+

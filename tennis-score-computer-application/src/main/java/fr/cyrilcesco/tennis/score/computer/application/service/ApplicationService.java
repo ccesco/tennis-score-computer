@@ -4,8 +4,8 @@ import fr.cyrilcesco.tennis.score.computer.domain.service.GameScoreComputerServi
 
 public class ApplicationService {
 
-    public String getDisplayTennisScoreComputer(String lineToCompute) {
-        GameScoreComputerService service = new GameScoreComputerService(new DisplayService());
+    public String getDisplayTennisScoreComputer(String lineToCompute, String player1Name, String player2Name) {
+        GameScoreComputerService service = new GameScoreComputerService(new DisplayService(), player1Name, player2Name);
         return service.computeScoreFromStringAndReturnTextToDisplay(lineToCompute);
     }
 }

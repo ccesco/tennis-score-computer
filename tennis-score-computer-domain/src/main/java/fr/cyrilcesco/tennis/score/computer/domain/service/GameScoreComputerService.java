@@ -12,8 +12,8 @@ public class GameScoreComputerService {
 
     private final DisplayServicePort displayService;
 
-    public GameScoreComputerService(DisplayServicePort displayService) {
-        this.game = new Game("A", "B");
+    public GameScoreComputerService(DisplayServicePort displayService, String player1Name, String player2Name) {
+        this.game = new Game(player1Name, player2Name);
         this.displayService = displayService;
     }
 

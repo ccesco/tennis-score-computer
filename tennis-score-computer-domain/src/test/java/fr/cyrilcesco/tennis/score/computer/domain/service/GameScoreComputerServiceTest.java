@@ -18,7 +18,7 @@ class GameScoreComputerServiceTest {
 
     @Test
     void should_return_empty_if_lineToCompute_null() {
-        GameScoreComputerService service = new GameScoreComputerService(displayService);
+        GameScoreComputerService service = new GameScoreComputerService(displayService, "A", "B");
 
         String result = service.computeScoreFromStringAndReturnTextToDisplay(null);
 
@@ -27,7 +27,7 @@ class GameScoreComputerServiceTest {
 
     @Test
     void should_return_display_score_with_A() {
-        GameScoreComputerService service = new GameScoreComputerService(displayService);
+        GameScoreComputerService service = new GameScoreComputerService(displayService, "A", "B");
 
         String result = service.computeScoreFromStringAndReturnTextToDisplay("A");
 
@@ -37,7 +37,8 @@ class GameScoreComputerServiceTest {
 
     @Test
     void should_return_display_score_with_B() {
-        GameScoreComputerService service = new GameScoreComputerService(displayService);
+        GameScoreComputerService service = new GameScoreComputerService(displayService, "A", "B")
+;
 
         String result = service.computeScoreFromStringAndReturnTextToDisplay("B");
 
@@ -47,7 +48,8 @@ class GameScoreComputerServiceTest {
 
     @Test
     void should_return_display_score_with_AAA() {
-        GameScoreComputerService service = new GameScoreComputerService(displayService);
+        GameScoreComputerService service = new GameScoreComputerService(displayService, "A", "B")
+;
 
         String result = service.computeScoreFromStringAndReturnTextToDisplay("AAA");
 
@@ -59,7 +61,8 @@ class GameScoreComputerServiceTest {
 
     @Test
     void should_return_display_score_with_BBBB() {
-        GameScoreComputerService service = new GameScoreComputerService(displayService);
+        GameScoreComputerService service = new GameScoreComputerService(displayService, "A", "B")
+;
 
         String result = service.computeScoreFromStringAndReturnTextToDisplay("BBBB");
 
@@ -72,7 +75,8 @@ class GameScoreComputerServiceTest {
 
     @Test
     void should_return_display_score_with_ABABAA() {
-        GameScoreComputerService service = new GameScoreComputerService(displayService);
+        GameScoreComputerService service = new GameScoreComputerService(displayService, "A", "B")
+;
 
         String result = service.computeScoreFromStringAndReturnTextToDisplay("ABABAA");
 

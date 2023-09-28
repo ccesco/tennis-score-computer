@@ -1,4 +1,4 @@
 FROM openjdk:18
 VOLUME /tmp
 COPY target/tennis-score-computer-application*.jar tennis-score-computer.jar
-ENTRYPOINT ["java","-jar","tennis-score-computer.jar","ABABABAA"]
+ENTRYPOINT ["java","-jar","tennis-score-computer.jar","ABABABAA", "A", "B"]

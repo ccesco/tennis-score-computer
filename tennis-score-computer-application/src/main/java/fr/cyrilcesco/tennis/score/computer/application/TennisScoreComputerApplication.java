@@ -9,7 +9,7 @@ public class TennisScoreComputerApplication {
 	public static void main(String[] args) {
 		ApplicationService service = new ApplicationService();
 		if(args.length >= 1) {
-			System.out.println(service.getDisplayTennisScoreComputer(args[0]));
+			System.out.println(service.getDisplayTennisScoreComputer(args[0], args[1], args[2]));
 		}
 	}
 

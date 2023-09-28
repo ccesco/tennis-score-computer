@@ -1,13 +1,16 @@
 package fr.cyrilcesco.tennis.score.computer.application;
 
-import org.springframework.boot.SpringApplication;
+import fr.cyrilcesco.tennis.score.computer.application.service.ApplicationService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class TennisScoreComputerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TennisScoreComputerApplication.class, args);
+		ApplicationService service = new ApplicationService();
+		if(args.length >= 1) {
+			System.out.println(service.getDisplayTennisScoreComputer(args[0]));
+		}
 	}
 
 }

@@ -10,11 +10,18 @@ public class Player {
         this.score = Score.LOVE;
     }
 
-    public Score winPoint() {
-        Score nextScore = Score.getNextScore(this.score);
-        this.score = nextScore;
-        return nextScore;
+    public void winPoint() {
+        this.score = Score.getNextScore(this.score);
     }
+
+    public void winPointInDeuce() {
+        this.score = Score.getNextScoreScoreDeuce();
+    }
+
+    public void loosePointInAdvantage() {
+        this.score = Score.getPreviousScoreAdvantage();
+    }
+
 
     public String getName() {
         return name;

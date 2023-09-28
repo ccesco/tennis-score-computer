@@ -19,10 +19,47 @@ public class Game {
             throw new InvalidPlayerNameException(playerName);
         }
 
+        if(isInAdvantageScore()) {
+            winInAdvantageScore(playerName);
+        } else if(isInDeuceScore()) {
+            winInDeuceScore(playerName);
+        } else {
+            winInNormalScore(playerName);
+        }
+    }
+
+    private boolean isInAdvantageScore() {
+        return player1.getScore().equals(Score.ADVANTAGE) || player2.getScore().equals(Score.ADVANTAGE);
+    }
+
+    private boolean isInDeuceScore() {
+        return player1.getScore().equals(Score.FORTY) && player2.getScore().equals(Score.FORTY);
+    }
+
+    private void winInNormalScore(String playerName) {
         if(playerName.equals(player1.getName())) {
             player1.winPoint();
         } else {
             player2.winPoint();
+        }
+    }
+
+    private void winInDeuceScore(String playerName) {
+        if(playerName.equals(player1.getName())) {
+            player1.winPointInDeuce();
+        } else {
+            player2.winPointInDeuce();
+        }
+    }
+
+    private void winInAdvantageScore(String playerName) {
+        if(playerName.equals(player1.getName()) && player2.getScore().equals(Score.ADVANTAGE)) {
+            player2.loosePointInAdvantage();
+        } else if(playerName.equals(player2.getName()) && player1.getScore().equals(Score.ADVANTAGE)) {
+            player1.loosePointInAdvantage();
+        } else {
+            // win with advantage, win the game
+            winInNormalScore(playerName);
         }
     }
 

@@ -29,4 +29,16 @@ class ScoreTest {
         Score nextScore = Score.getNextScore(Score.FORTY);
         assertEquals(Score.GAME, nextScore);
     }
+
+    @Test
+    void should_return_ADVANTAGE_when_player_win_in_deuce() {
+        Score nextScore = Score.getNextScoreScoreDeuce();
+        assertEquals(Score.ADVANTAGE, nextScore);
+    }
+
+    @Test
+    void should_return_FORTY_when_player_loose_in_avantage() {
+        Score nextScore = Score.getPreviousScoreAdvantage();
+        assertEquals(Score.FORTY, nextScore);
+    }
 }

@@ -19,18 +19,18 @@ class PlayerTest {
     @Test
     void should_return_player_next_score_when_win_one_point() {
         Player player = new Player("Cyril");
-        Score newScore = player.winPoint();
+        player.winPoint();
 
-        assertEquals(Score.FIFTEEN, newScore);
+        assertEquals(Score.FIFTEEN, player.getScore());
     }
 
     @Test
     void should_return_player_next_score_when_win_two_point() {
         Player player = new Player("Cyril");
         player.winPoint();
-        Score newScore = player.winPoint();
+        player.winPoint();
 
-        assertEquals(Score.THIRTY, newScore);
+        assertEquals(Score.THIRTY, player.getScore());
     }
 
     @Test
@@ -38,9 +38,9 @@ class PlayerTest {
         Player player = new Player("Cyril");
         player.winPoint();
         player.winPoint();
-        Score newScore = player.winPoint();
+        player.winPoint();
 
-        assertEquals(Score.FORTY, newScore);
+        assertEquals(Score.FORTY, player.getScore());
     }
 
     @Test
@@ -49,9 +49,9 @@ class PlayerTest {
         player.winPoint();
         player.winPoint();
         player.winPoint();
-        Score newScore = player.winPoint();
+        player.winPoint();
 
-        assertEquals(Score.GAME, newScore);
+        assertEquals(Score.GAME, player.getScore());
     }
 
     @Test

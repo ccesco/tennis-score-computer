@@ -99,4 +99,191 @@ class GameTest {
     void souhld_throw_error_when_player_name_not_present() {
         assertThrows(InvalidPlayerNameException.class, () -> gameToTest.playerWinAPoint("TEST"));
     }
+
+    @Test
+    void souhld_return_game_deuce_when_player1_is_40_and_player2_is_40() {
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+
+        Player player1 = gameToTest.getPlayer1();
+        assertEquals(Score.FORTY, player1.getScore());
+
+        Player player2 = gameToTest.getPlayer2();
+        assertEquals(Score.FORTY, player2.getScore());
+    }
+
+    @Test
+    void souhld_return_player1_advantage_when_player1_is_40_and_player2_is_40_and_player1_win_point() {
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        // Player 1 : 40 / Player 2 : 40
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+
+        Player player1 = gameToTest.getPlayer1();
+        assertEquals(Score.ADVANTAGE, player1.getScore());
+
+        Player player2 = gameToTest.getPlayer2();
+        assertEquals(Score.FORTY, player2.getScore());
+    }
+
+    @Test
+    void souhld_return_player2_advantage_when_player1_is_40_and_player2_is_40_and_player2_win_point() {
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        // Player 1 : 40 / Player 2 : 40
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+
+        Player player1 = gameToTest.getPlayer1();
+        assertEquals(Score.FORTY, player1.getScore());
+
+        Player player2 = gameToTest.getPlayer2();
+        assertEquals(Score.ADVANTAGE, player2.getScore());
+    }
+
+    @Test
+    void souhld_return_player1_win_game_when_player1_is_advantage_and_player2_is_40_and_player1_win_point() {
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        // Player 1 : ADV / Player 2 : 40
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+
+        Player player1 = gameToTest.getPlayer1();
+        assertEquals(Score.GAME, player1.getScore());
+
+        Player player2 = gameToTest.getPlayer2();
+        assertEquals(Score.FORTY, player2.getScore());
+    }
+
+    @Test
+    void souhld_return_player2_win_game_when_player2_is_advantage_and_player1_is_40_and_player2_win_point() {
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        // Player 1 : 40 / Player 2 : ADV
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+
+        Player player1 = gameToTest.getPlayer1();
+        assertEquals(Score.FORTY, player1.getScore());
+
+        Player player2 = gameToTest.getPlayer2();
+        assertEquals(Score.GAME, player2.getScore());
+    }
+
+    @Test
+    void souhld_return_deuce_when_player1_is_advantage_and_player2_is_40_and_player2_win_point() {
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        // Player 1 : ADV / Player 2 : 40
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+
+        Player player1 = gameToTest.getPlayer1();
+        assertEquals(Score.FORTY, player1.getScore());
+
+        Player player2 = gameToTest.getPlayer2();
+        assertEquals(Score.FORTY, player2.getScore());
+    }
+
+    @Test
+    void souhld_return_deuce_when_player2_is_advantage_and_player1_is_40_and_player1_win_point() {
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        // Player 1 : 40 / Player 2 : ADV
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+
+        Player player1 = gameToTest.getPlayer1();
+        assertEquals(Score.FORTY, player1.getScore());
+
+        Player player2 = gameToTest.getPlayer2();
+        assertEquals(Score.FORTY, player2.getScore());
+    }
+
+    @Test
+    void souhld_player1_win_game_when_return_deuce_and_player1_win_point() {
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        // Player 1 : 40 / Player 2 : ADV
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        // Player 1 : 40 / Player 2 : 40
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        // Player 1 : ADV / Player 2 : 40
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+
+        Player player1 = gameToTest.getPlayer1();
+        assertEquals(Score.GAME, player1.getScore());
+
+        Player player2 = gameToTest.getPlayer2();
+        assertEquals(Score.FORTY, player2.getScore());
+    }
+
+    @Test
+    void souhld_player2_win_game_when_return_deuce_and_player2_win_point() {
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        // Player 1 : 40 / Player 2 : ADV
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_1);
+        // Player 1 : 40 / Player 2 : 40
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+        // Player 1 : 40 / Player 2 : ADV
+
+        gameToTest.playerWinAPoint(NAME_PLAYER_2);
+
+        Player player1 = gameToTest.getPlayer1();
+        assertEquals(Score.FORTY, player1.getScore());
+
+        Player player2 = gameToTest.getPlayer2();
+        assertEquals(Score.GAME, player2.getScore());
+    }
 }

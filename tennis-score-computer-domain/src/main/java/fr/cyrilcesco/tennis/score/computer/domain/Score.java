@@ -21,8 +21,16 @@ public enum Score {
             case LOVE -> Score.FIFTEEN;
             case FIFTEEN -> Score.THIRTY;
             case THIRTY -> Score.FORTY;
-            case FORTY -> Score.GAME;
+            case FORTY, ADVANTAGE -> Score.GAME;
             default -> throw new ScoreNotAllowedException();
         };
+    }
+
+    public static Score getNextScoreScoreDeuce() {
+        return Score.ADVANTAGE;
+    }
+
+    public static Score getPreviousScoreAdvantage() {
+        return Score.FORTY;
     }
 }

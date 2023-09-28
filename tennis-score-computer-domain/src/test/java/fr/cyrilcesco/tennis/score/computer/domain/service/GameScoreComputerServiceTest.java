@@ -1,71 +1,88 @@
 package fr.cyrilcesco.tennis.score.computer.domain.service;
 
-import fr.cyrilcesco.tennis.score.computer.domain.Game;
-import fr.cyrilcesco.tennis.score.computer.domain.Score;
+import fr.cyrilcesco.tennis.score.computer.domain.spi.DisplayServicePort;
+import fr.cyrilcesco.tennis.score.computer.domain.stub.DisplayServiceStub;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GameScoreComputerServiceTest {
 
+    private DisplayServicePort displayService;
+
+    @BeforeEach
+    void init() {
+        displayService = new DisplayServiceStub();
+    }
+
     @Test
     void should_return_empty_if_lineToCompute_null() {
-        GameScoreComputerService service = new GameScoreComputerService();
+        GameScoreComputerService service = new GameScoreComputerService(displayService);
 
-        Game result = service.computeScoreFromString(null);
+        String result = service.computeScoreFromStringAndReturnTextToDisplay(null);
 
-        assertEquals(Score.LOVE, result.getPlayer1().getScore());
-        assertEquals(Score.LOVE, result.getPlayer2().getScore());
+        assertEquals("", result);
     }
 
     @Test
     void should_return_display_score_with_A() {
-        GameScoreComputerService service = new GameScoreComputerService();
+        GameScoreComputerService service = new GameScoreComputerService(displayService);
 
-        Game result = service.computeScoreFromString("A");
+        String result = service.computeScoreFromStringAndReturnTextToDisplay("A");
 
-        assertEquals(Score.FIFTEEN, result.getPlayer1().getScore());
-        assertEquals(Score.LOVE, result.getPlayer2().getScore());
+        String expected = "Player A : 15 | Player B : 0 ---- ";
+        assertEquals(expected, result);
     }
 
     @Test
     void should_return_display_score_with_B() {
-        GameScoreComputerService service = new GameScoreComputerService();
+        GameScoreComputerService service = new GameScoreComputerService(displayService);
 
-        Game result = service.computeScoreFromString("B");
+        String result = service.computeScoreFromStringAndReturnTextToDisplay("B");
 
-        assertEquals(Score.LOVE, result.getPlayer1().getScore());
-        assertEquals(Score.FIFTEEN, result.getPlayer2().getScore());
+        String expected = "Player A : 0 | Player B : 15 ---- ";
+        assertEquals(expected, result);
     }
 
     @Test
     void should_return_display_score_with_AAA() {
-        GameScoreComputerService service = new GameScoreComputerService();
+        GameScoreComputerService service = new GameScoreComputerService(displayService);
 
-        Game result = service.computeScoreFromString("AAA");
+        String result = service.computeScoreFromStringAndReturnTextToDisplay("AAA");
 
-        assertEquals(Score.FORTY, result.getPlayer1().getScore());
-        assertEquals(Score.LOVE, result.getPlayer2().getScore());
+        String expected = "Player A : 15 | Player B : 0 ---- " +
+                "Player A : 30 | Player B : 0 ---- " +
+                "Player A : 40 | Player B : 0 ---- ";
+        assertEquals(expected, result);
     }
 
     @Test
     void should_return_display_score_with_BBBB() {
-        GameScoreComputerService service = new GameScoreComputerService();
+        GameScoreComputerService service = new GameScoreComputerService(displayService);
 
-        Game result = service.computeScoreFromString("BBBB");
+        String result = service.computeScoreFromStringAndReturnTextToDisplay("BBBB");
 
-        assertEquals(Score.LOVE, result.getPlayer1().getScore());
-        assertEquals(Score.GAME, result.getPlayer2().getScore());
+        String expected = "Player A : 0 | Player B : 15 ---- " +
+                "Player A : 0 | Player B : 30 ---- " +
+                "Player A : 0 | Player B : 40 ---- "+
+                "Player B wins the game";
+        assertEquals(expected, result);
     }
 
     @Test
     void should_return_display_score_with_ABABAA() {
-        GameScoreComputerService service = new GameScoreComputerService();
+        GameScoreComputerService service = new GameScoreComputerService(displayService);
 
-        Game result = service.computeScoreFromString("ABABAA");
+        String result = service.computeScoreFromStringAndReturnTextToDisplay("ABABAA");
 
-        assertEquals(Score.GAME, result.getPlayer1().getScore());
-        assertEquals(Score.THIRTY, result.getPlayer2().getScore());
+        String expected = "Player A : 15 | Player B : 0 ---- " +
+                "Player A : 15 | Player B : 15 ---- " +
+                "Player A : 30 | Player B : 15 ---- " +
+                "Player A : 30 | Player B : 30 ---- " +
+                "Player A : 40 | Player B : 30 ---- " +
+                "Player A wins the game";
+        assertEquals(expected, result);
     }
 
 }

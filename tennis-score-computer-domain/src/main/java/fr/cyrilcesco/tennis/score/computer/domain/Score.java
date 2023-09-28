@@ -16,6 +16,10 @@ public enum Score {
         this.value = value;
     }
 
+    public String getValue() {
+        return value;
+    }
+
     public static Score getNextScore(Score actualScore) {
         return switch (actualScore) {
             case LOVE -> Score.FIFTEEN;

@@ -35,9 +35,11 @@ class ApplicationServiceTest {
 
         String result = service.getDisplayTennisScoreComputer("AAA", PLAYER_1_NAME, PLAYER_2_NAME);
 
-        String expected = "Player A : 15 / Player B : 0\n" +
-                "Player A : 30 / Player B : 0\n" +
-                "Player A : 40 / Player B : 0\n";
+        String expected = """
+                Player A : 15 / Player B : 0
+                Player A : 30 / Player B : 0
+                Player A : 40 / Player B : 0
+                """;
         assertEquals(expected, result);
     }
 
@@ -47,10 +49,11 @@ class ApplicationServiceTest {
 
         String result = service.getDisplayTennisScoreComputer("BBBB", PLAYER_1_NAME, PLAYER_2_NAME);
 
-        String expected = "Player A : 0 / Player B : 15\n" +
-                "Player A : 0 / Player B : 30\n" +
-                "Player A : 0 / Player B : 40\n"+
-                "Player B wins the game";
+        String expected = """
+                Player A : 0 / Player B : 15
+                Player A : 0 / Player B : 30
+                Player A : 0 / Player B : 40
+                Player B wins the game""";
         assertEquals(expected, result);
     }
 
@@ -60,12 +63,13 @@ class ApplicationServiceTest {
 
         String result = service.getDisplayTennisScoreComputer("ABABAA", PLAYER_1_NAME, PLAYER_2_NAME);
 
-        String expected = "Player A : 15 / Player B : 0\n" +
-                "Player A : 15 / Player B : 15\n" +
-                "Player A : 30 / Player B : 15\n" +
-                "Player A : 30 / Player B : 30\n" +
-                "Player A : 40 / Player B : 30\n" +
-                "Player A wins the game";
+        String expected = """
+                Player A : 15 / Player B : 0
+                Player A : 15 / Player B : 15
+                Player A : 30 / Player B : 15
+                Player A : 30 / Player B : 30
+                Player A : 40 / Player B : 30
+                Player A wins the game""";
         assertEquals(expected, result);
     }
 
@@ -75,14 +79,25 @@ class ApplicationServiceTest {
 
         String result = service.getDisplayTennisScoreComputer("ABABABAA", PLAYER_1_NAME, PLAYER_2_NAME);
 
-        String expected = "Player A : 15 / Player B : 0\n" +
-                "Player A : 15 / Player B : 15\n" +
-                "Player A : 30 / Player B : 15\n" +
-                "Player A : 30 / Player B : 30\n" +
-                "Player A : 40 / Player B : 30\n" +
-                "Player A : 40 / Player B : 40\n" +
-                "Player A : ADVANTAGE / Player B : 40\n" +
-                "Player A wins the game";
+        String expected = """
+                Player A : 15 / Player B : 0
+                Player A : 15 / Player B : 15
+                Player A : 30 / Player B : 15
+                Player A : 30 / Player B : 30
+                Player A : 40 / Player B : 30
+                Player A : 40 / Player B : 40
+                Player A : ADVANTAGE / Player B : 40
+                Player A wins the game""";
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void should_return_display_score_with_null() {
+        ApplicationService service = new ApplicationService();
+
+        String result = service.getDisplayTennisScoreComputer(null, PLAYER_1_NAME, PLAYER_2_NAME);
+
+        String expected = "";
         assertEquals(expected, result);
     }
 
@@ -92,14 +107,15 @@ class ApplicationServiceTest {
 
         String result = service.getDisplayTennisScoreComputer("aBAbABAA", PLAYER_1_NAME, PLAYER_2_NAME);
 
-        String expected = "Player A : 15 / Player B : 0\n" +
-                "Player A : 15 / Player B : 15\n" +
-                "Player A : 30 / Player B : 15\n" +
-                "Player A : 30 / Player B : 30\n" +
-                "Player A : 40 / Player B : 30\n" +
-                "Player A : 40 / Player B : 40\n" +
-                "Player A : ADVANTAGE / Player B : 40\n" +
-                "Player A wins the game";
+        String expected = """
+                Player A : 15 / Player B : 0
+                Player A : 15 / Player B : 15
+                Player A : 30 / Player B : 15
+                Player A : 30 / Player B : 30
+                Player A : 40 / Player B : 30
+                Player A : 40 / Player B : 40
+                Player A : ADVANTAGE / Player B : 40
+                Player A wins the game""";
         assertEquals(expected, result);
     }
 }

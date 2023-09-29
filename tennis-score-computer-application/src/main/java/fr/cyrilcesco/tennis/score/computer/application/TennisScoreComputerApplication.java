@@ -5,6 +5,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.Objects;
+
 @SpringBootApplication
 public class TennisScoreComputerApplication {
 
@@ -12,7 +14,7 @@ public class TennisScoreComputerApplication {
 
 	public static void main(String[] args) {
 		ApplicationService service = new ApplicationService();
-		if(args.length >= 1) {
+		if(Objects.nonNull(args) && args.length >= 3) {
 			logger.info(service.getDisplayTennisScoreComputer(args[0], args[1], args[2]));
 		}
 	}

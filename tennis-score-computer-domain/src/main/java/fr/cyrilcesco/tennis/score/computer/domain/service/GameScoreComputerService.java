@@ -13,7 +13,7 @@ public class GameScoreComputerService {
     private final DisplayServicePort displayService;
 
     public GameScoreComputerService(DisplayServicePort displayService, String player1Name, String player2Name) {
-        this.game = new Game(player1Name, player2Name);
+        this.game = new Game(player1Name.toUpperCase(), player2Name.toUpperCase());
         this.displayService = displayService;
     }
 
@@ -22,7 +22,7 @@ public class GameScoreComputerService {
             return "";
         }
 
-        List<Character> playerWinPoints = lineToCompute.chars().mapToObj(c -> (char)c).toList();
+        List<Character> playerWinPoints = lineToCompute.toUpperCase().chars().mapToObj(c -> (char)c).toList();
 
         for (Character playerWinPoint: playerWinPoints) {
             game.playerWinAPoint(String.valueOf(playerWinPoint));

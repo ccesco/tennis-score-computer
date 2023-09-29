@@ -85,4 +85,21 @@ class ApplicationServiceTest {
                 "Player A wins the game";
         assertEquals(expected, result);
     }
+
+    @Test
+    void should_return_display_score_with_aBAbABAA_to_check_case_sensitive() {
+        ApplicationService service = new ApplicationService();
+
+        String result = service.getDisplayTennisScoreComputer("aBAbABAA", PLAYER_1_NAME, PLAYER_2_NAME);
+
+        String expected = "Player A : 15 / Player B : 0\n" +
+                "Player A : 15 / Player B : 15\n" +
+                "Player A : 30 / Player B : 15\n" +
+                "Player A : 30 / Player B : 30\n" +
+                "Player A : 40 / Player B : 30\n" +
+                "Player A : 40 / Player B : 40\n" +
+                "Player A : ADVANTAGE / Player B : 40\n" +
+                "Player A wins the game";
+        assertEquals(expected, result);
+    }
 }

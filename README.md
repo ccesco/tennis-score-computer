@@ -41,6 +41,18 @@ Pour changer le paramètre de lancement, modifier le Dockerfile de tennis-score-
 docker-compose up --build
 ```
 
+Sinon pour lancer avec des paramètres personnalisés 
+
+aller dans le dossier tennis-score-computer-application et lancer : 
+```
+docker build . -t tennis
+```
+
+ensuite faire :
+```
+docker run tennis ABABA A B
+```
+
 # Choix architecture
 
 Certain choix d'architecture peuvent être disproportionnés pour ce Kata, mais je l'ai réalisé comme si je devais mettre l'application en prod, et dans une logique d'évolution rapide et de maintenabilité facile.
